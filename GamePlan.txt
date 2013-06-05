@@ -1,0 +1,22 @@
+he underlying vision for my game is to create a game which reacts to music.
+I figure there are two main types of music games: games where you play the music (Instruments Suite, Guitar Hero, Rock Band, Gutaru Man Lives, Parapa the Rapper, etc) and games where you react to the music (Stick man game on PlayStation 1, Impossible game, PSP tribes music game, Groove Coaster, Symphony, etc). These games play to either the instrumental nodes, the beat, or the tune (energy, emotion, etc). I think music can bring significant depth, emotion, and enjoyment to a game. While games where you play the music are common place, I believe games where you react to the music are less common and, more importantly, offer more creative space to build something enjoyable.
+
+Analysing beats from music, though not very difficult, is not precise and tends to be genre specific. On the overhand, I can use MIDI files to reliably invoke events based on musical notes. Not only does MIDI supply the notes and timings, but also the instruments too.
+
+My Idea:
+
+I want to create a merger between games like Geometry Wars, Asteroids, and Space Invaders. Enemies spawn on musical notes, where the instrument being played and length of note (long or short) determines the enemy type). The player is free to move in any direction in a bounded 2D arena. The player can shoot notes to gain points. A game round continues until the song finishes or the player dies by being hit by an enemy (possibly after a number of lives). A high score is recorded for competitive purposes. The game is single player only.
+
+I am not sure whether the player should manually shoot or whether the player should automatically shoot based on notes from a specific instrument (which would be excluded from instruments enemies spawn on).
+
+Theme:
+
+Player Controls:
+
+Enemy Behaviour:
+
+Round Behaviour:
+
+Player Scoring:
+
+System Requirements:
