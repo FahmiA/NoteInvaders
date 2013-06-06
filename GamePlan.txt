@@ -10,13 +10,34 @@ I want to create a merger between games like Geometry Wars, Asteroids, and Space
 I am not sure whether the player should manually shoot or whether the player should automatically shoot based on notes from a specific instrument (which would be excluded from instruments enemies spawn on).
 
 Theme:
+Battle of the instruments. But, it happens they have all turned against you.
+Set in a virtual universe, like Geometry wars.
 
 Player Controls:
+WASD for up/down/left/right movement.
+Mouse and arrow keys to to aim.
+Experiment with mouse to move aswell (player guided by mouse).
 
 Enemy Behaviour:
+Keep it simple:
+ * Chase
+ * Follow
+ * Evade attack (if time permits)
 
 Round Behaviour:
+Player spawns in the middle.
+The entire screen is on one page.
+Music plays.
+Enemies spawn on notes.
+Player spawns on notes.
+Player points displayed and accoumilate.
 
 Player Scoring:
+Number of enemies defeated.
+Bonous for finishing song.
 
 System Requirements:
+Any Desktop, but definietly Windows.
+A desktop client.
+720p monitor.
+Sound support.
