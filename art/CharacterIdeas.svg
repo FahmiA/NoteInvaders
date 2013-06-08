@@ -24,15 +24,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2976805"
-     inkscape:cx="335.49593"
-     inkscape:cy="421.65725"
+     inkscape:zoom="1.8351974"
+     inkscape:cx="532.00896"
+     inkscape:cy="362.79988"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1003"
-     inkscape:window-x="-9"
+     inkscape:window-width="1360"
+     inkscape:window-height="691"
+     inkscape:window-x="1911"
      inkscape:window-y="-9"
      inkscape:window-maximized="1" />
   <metadata
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -51,6 +51,24 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <g
+       id="g3809"
+       transform="matrix(0.72263514,-0.69122967,0.69122967,0.72263514,-294.49969,427.05516)">
+      <rect
+         y="655.50024"
+         x="245.14142"
+         height="10.017874"
+         width="444.936"
+         id="rect3803"
+         style="fill:#670da0;fill-opacity:1;stroke:none" />
+      <rect
+         style="fill:#9840cf;fill-opacity:1;stroke:none"
+         id="rect3807"
+         width="444.936"
+         height="3"
+         x="245.14142"
+         y="659.00916" />
+    </g>
     <rect
        style="fill:#e3dbdb;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
        id="rect2984"
@@ -79,12 +97,12 @@
        height="531.39465"
        width="960.77625"
        id="rect3754"
-       style="fill:#e3dbdb;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1" />
+       style="fill:#42046a;fill-opacity:0;stroke:#000000;stroke-width:10;stroke-opacity:1" />
     <path
        style="fill:#efec06;fill-opacity:1;stroke:#000000;stroke-width:2.07012129;stroke-opacity:1"
        inkscape:transform-center-x="4.0458702"
        inkscape:transform-center-y="4.0458713"
-       d="m 408.54673,721.65329 -7.00766,26.15292 -12.18295,19.20323 -21.19618,-5.0875 -5.41296,-22.1131 19.64683,-11.1479 z"
+       d="m 363.8516,710.86481 -7.00766,26.15292 -12.18295,19.20323 -21.19618,-5.0875 -5.41296,-22.1131 19.64683,-11.1479 z"
        id="path2985-1"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
@@ -171,5 +189,21 @@
          id="tspan3812"
          x="33.136044"
          y="1009.2083">Cool fonts: http://luc.devroye.org/fonts-50559.html</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="fill:#670da0;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1"
+       id="path3801"
+       sodipodi:sides="4"
+       sodipodi:cx="320.18668"
+       sodipodi:cy="610.80511"
+       sodipodi:r1="5.7279387"
+       sodipodi:r2="5.4045072"
+       sodipodi:arg1="2.7985687"
+       sodipodi:arg2="3.5839669"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 314.79244,612.73163 0.50998,-4.24011 2.95774,-3.08065 4.24011,0.50999 3.08065,2.95774 -0.50999,4.24011 -2.95774,3.08064 -4.24011,-0.50998 z"
+       transform="translate(292.0356,-233.45366)" />
   </g>
 </svg>
