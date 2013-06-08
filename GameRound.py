@@ -12,19 +12,33 @@ from pygame.locals import *
 
 import ContentManager
 from Player import Player
+from Enemy import Enemy
 
 class GameRound:
 
     def __init__(self):
-        pass
+        self._enemiesGroup = pygame.sprite.Group()
+        self._enemyDelaySec = 3.0
+        self._enemyElapsedDelaySec = 0.0
 
     def load(self):
         self._player = Player(ContentManager.load_image('media\\actors\\player.png'))
         self._playerGroup = pygame.sprite.GroupSingle(self._player)
 
+        self._enemyImage = ContentManager.load_image('media\\actors\\enemy_arrow.png')
+
     def update(self, elapsedTimeSec):
+        self._enemyElapsedDelaySec += elapsedTimeSec
+
+        if self._enemyElapsedDelaySec > self._enemyDelaySec:
+            self._enemyElapsedDelaySec = 0.0
+            enemy = Enemy(self._enemyImage, self._player)
+            self._enemiesGroup.add(enemy)
+
         self._playerGroup.update(elapsedTimeSec)
+        self._enemiesGroup.update(elapsedTimeSec)
 
     def draw(self, screen):
         self._playerGroup.draw(screen)
+        self._enemiesGroup.draw(screen)
 

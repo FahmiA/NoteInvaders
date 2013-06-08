@@ -1,41 +1,29 @@
 import pygame
 from pygame.locals import *
 
+from Actor import Actor
 from Vec2d import Vec2d
 
-class Player(pygame.sprite.Sprite):
+class Player(Actor):
 
     def __init__(self, image):
-        pygame.sprite.Sprite.__init__(self) #call Sprite initializer
-        self._originalImage = image
-        self.image = image
-        self.rect = image.get_rect()
-        self.rect.center = (500,400) # TODO: Change
-
-        self._movementSpeed = 50 # Pixels per second
-        self._rotationSpeed = 50 # Degrees per second
-
-        self._rotation = 0; # Degrees
-        self._velocity = Vec2d(0, -self._movementSpeed)
+        Actor.__init__(self, image, (500, 500))
+        self._maxVelocity[0] = 0
 
     def update(self, elapsedTimeSec):
+        Actor.update(self, elapsedTimeSec)
 
         pressedKeys = pygame.key.get_pressed()
 
         if pressedKeys[K_d]:
-            self._rotate(self._rotationSpeed * elapsedTimeSec)
+            self._rotate(self._rotationSpeed)
         elif pressedKeys[K_a]:
-            self._rotate(-self._rotationSpeed * elapsedTimeSec)
+            self._rotate(-self._rotationSpeed)
 
         if pressedKeys[K_w]:
-            self.rect.center += self._velocity * elapsedTimeSec
+            self._velocity = Vec2d(self._maxVelocity)
+        else:
+            self._velocity = Vec2d(0, 0)
 
-    def _rotate(self, deltaRotation):
-        self._rotation += deltaRotation
-        self._velocity.rotate(deltaRotation)
 
-        center = self.rect.center
-        self.image = pygame.transform.rotate(self._originalImage, -self._rotation)
-        self.rect = self.image.get_rect()
-        self.rect.center = center
-
+        self._updatePosition()
