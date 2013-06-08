@@ -1,4 +1,5 @@
 *.swp
 *.pyc
 
+Thumbs.db
 pygame-1.9.1release
