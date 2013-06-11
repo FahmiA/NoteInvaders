@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="3.6703948"
-     inkscape:cx="127.52413"
-     inkscape:cy="679.97715"
+     inkscape:zoom="2.5953611"
+     inkscape:cx="353.58271"
+     inkscape:cy="595.94815"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -227,5 +227,26 @@
        inkscape:export-filename="C:\Users\Fahmi\Documents\Game Development\WoGaDeMo\media\actors\enemy_arrow.png"
        inkscape:export-xdpi="168.028"
        inkscape:export-ydpi="168.028" />
+    <g
+       id="g3809-1"
+       transform="matrix(0.99999983,5.7851512e-4,-5.7851512e-4,0.99999983,-103.96604,-277.13818)"
+       inkscape:export-filename="C:\Users\Fahmi\Documents\Game Development\WoGaDeMo\media\projectiles\laser.png"
+       inkscape:export-xdpi="149.22"
+       inkscape:export-ydpi="149.22">
+      <rect
+         y="655.50024"
+         x="245.14142"
+         height="10.017874"
+         width="444.936"
+         id="rect3803-7"
+         style="fill:#670da0;fill-opacity:1;stroke:none" />
+      <rect
+         style="fill:#9840cf;fill-opacity:1;stroke:none"
+         id="rect3807-4"
+         width="444.936"
+         height="3"
+         x="245.14142"
+         y="659.00916" />
+    </g>
   </g>
 </svg>

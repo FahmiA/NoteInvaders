@@ -1,8 +1,9 @@
 import pygame
 from pygame.locals import *
 
-from Actor import Actor
 from Vec2d import Vec2d
+
+from Actor import Actor
 
 class Enemy(Actor):
 
