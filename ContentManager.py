@@ -3,7 +3,15 @@ import os
 import pygame
 from pygame.locals import *
 
-def load_image(name, colorkey=None):
+def load_image(name, colorkey = -1):
+    """
+    Loads an image.
+    name = relative file path to image.
+    colorkey = Determines transparent colour:
+                * None for no transparency
+                * -1 for top-left pixel to be transparent colour (default)
+                * transparent colour
+    """
     fullname = os.path.join('.', name)
     try:
         image = pygame.image.load(fullname)
