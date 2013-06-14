@@ -35,4 +35,6 @@ class Player(Actor):
 
         # Handle firing laser
         if pressedKeys[K_SPACE]:
-            self._laser.fire(self.rect.midtop, self._rotation - 90)
+            self._laser.fire(self.rect.center, self._rotation - 90)
+        else:
+            self._laser.stop()

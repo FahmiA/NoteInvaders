@@ -3,7 +3,7 @@ from pygame.locals import *
 
 from Vec2d import Vec2d
 
-class Laser(pygame.sprite.Sprite):
+class Laser(pygame.sprite.DirtySprite):
 
     def __init__(self, image):
         # Call Sprite initializer
@@ -14,28 +14,32 @@ class Laser(pygame.sprite.Sprite):
         self.rect = image.get_rect()
 
         self._rotation = 0;
+        self._isFiring = False
+        
 
     def fire(self, firedFromPos, rotation):
-        #self._firedFromPos = firedFromPos
-        #self._rotation = rotation
+        self._isFiring = True
+        # TODO: Adjust Height
 
         # Adjust position
-        self.rect.midleft = (firedFromPos[0], firedFromPos[1])
-
-        # TODO: Adjust Height
+        self.rect.center = Vec2d(firedFromPos) - Vec2d(self._originalImage.get_rect().width / 2, 0).rotated(rotation)
 
         # Rotate
         self._rotation = rotation;
         self._rotate(rotation)
 
+    def stop(self):
+        self._isFiring = False
+
+    def isFiring(self):
+        return self._isFiring;
+
     def update(self, elapsedTimeSec):
-        #self._rotation += 1
-        #self._rotate(self._rotation)
         pass
 
     def _rotate(self, rotation):
-        midleft = self.rect.midleft
+        center = self.rect.center
         self.image = pygame.transform.rotate(self._originalImage, -rotation)
         self.rect = self.image.get_rect()
-        self.rect.midleft = midleft
+        self.rect.center = center
 

@@ -46,12 +46,17 @@ class GameRound:
             enemy = Enemy(self._enemyImage, self._player)
             self._enemiesGroup.add(enemy)
 
+        if self._laser.isFiring():
+            self._laser.add(self._projectilesGroup)
+        else:
+            self._laser.kill()
+
         self._playerGroup.update(elapsedTimeSec)
         self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
 
     def draw(self, screen):
-        self._playerGroup.draw(screen)
         self._projectilesGroup.draw(screen)
+        self._playerGroup.draw(screen)
         self._enemiesGroup.draw(screen)
 
