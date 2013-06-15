@@ -11,6 +11,7 @@ import pygame
 from pygame.locals import *
 
 import ContentManager
+import CollisionMethods
 
 from Laser import Laser
 from Player import Player
@@ -26,7 +27,7 @@ class GameRound:
         self._playerGroup = pygame.sprite.GroupSingle()
         self._projectilesGroup = pygame.sprite.Group()
 
-        self._maxEnemies = 0 # TODO: For debugging only
+        self._maxEnemies = 1 # TODO: For debugging only
 
 
     def load(self):
@@ -51,9 +52,16 @@ class GameRound:
         else:
             self._laser.kill()
 
+        self._checkCollisions()
+
         self._playerGroup.update(elapsedTimeSec)
         self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
+
+    def _checkCollisions(self):
+        # Check collisions between projectiles and enemies
+        collidedEnemies = pygame.sprite.spritecollide(self._laser, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
+
 
     def draw(self, screen):
         self._projectilesGroup.draw(screen)

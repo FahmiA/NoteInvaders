@@ -3,7 +3,7 @@ from pygame.locals import *
 
 from Vec2d import Vec2d
 
-class Laser(pygame.sprite.DirtySprite):
+class Laser(pygame.sprite.Sprite):
 
     def __init__(self, image):
         # Call Sprite initializer
@@ -15,7 +15,6 @@ class Laser(pygame.sprite.DirtySprite):
 
         self._rotation = 0;
         self._isFiring = False
-        
 
     def fire(self, firedFromPos, rotation):
         self._isFiring = True
