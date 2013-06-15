@@ -12,6 +12,7 @@ from pygame.locals import *
 
 import ContentManager
 import CollisionMethods
+from MusicPlayer import MusicPlayer
 
 from Laser import Laser
 from Player import Player
@@ -29,15 +30,22 @@ class GameRound:
 
         self._maxEnemies = 1 # TODO: For debugging only
 
-
     def load(self):
+        # Load projectiles
         self._laser = Laser(ContentManager.load_image('media\\projectiles\\laser.png'))
         self._projectilesGroup.add(self._laser)
 
+        # Load player
         self._player = Player(ContentManager.load_image('media\\actors\\player.png'), self._laser)
         self._playerGroup.add(self._player)
 
+        # Load enemies
         self._enemyImage = ContentManager.load_image('media\\actors\\enemy_arrow.png')
+
+        # Load music
+        self._musicPlayer = MusicPlayer()
+        self._musicPlayer.load('media\\music\\morrowind_dance_mix.mid')
+        self._musicPlayer.play()
 
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec
@@ -61,7 +69,6 @@ class GameRound:
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies
         collidedEnemies = pygame.sprite.spritecollide(self._laser, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
-
 
     def draw(self, screen):
         self._projectilesGroup.draw(screen)
