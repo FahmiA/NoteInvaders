@@ -13,6 +13,7 @@ from pygame.locals import *
 import ContentManager
 import CollisionMethods
 from MusicPlayer import MusicPlayer
+from MIDISequencer import MIDISequencer
 
 from Laser import Laser
 from Player import Player
@@ -44,8 +45,11 @@ class GameRound:
 
         # Load music
         self._musicPlayer = MusicPlayer()
-        self._musicPlayer.load('media\\music\\morrowind_dance_mix.mid')
+        self._musicPlayer.load('media\\music\\mary.mid')
         self._musicPlayer.play()
+
+        self._midiSequencer = MIDISequencer(None)
+        self._midiSequencer.load('python-midi-0.2.3/mary.mid')
 
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec
@@ -65,6 +69,8 @@ class GameRound:
         self._playerGroup.update(elapsedTimeSec)
         self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
+
+        self._midiSequencer.update(elapsedTimeSec)
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies
