@@ -12,6 +12,7 @@ class MIDITrackSequencer:
 
         self._setTempo(120) # A reasonable default tempo
         self._index = 0 # Next event to look at after delayMS time
+        self._totalTimeMs = 0
 
     def _setTempo(self, tempo):
         self._tempo = tempo
@@ -24,32 +25,24 @@ class MIDITrackSequencer:
         return self._tickMs
 
     def update(self, elapsedTimeMS):
+        self._totalTimeMs += elapsedTimeMS
         # TODO return note event(s) fired or an empty list
         firedEvents = []
 
         if self._index >= len(self._track):
             return firedEvents
 
-        # TODO: Handle when elapsedTimeMS encompasses multiple events
-        self._delayMs -= elapsedTimeMS
-        if self._delayMs <= 0:
-            event = self._track[self._index]
+        event = self._track[self._index]
+        while event and event.tick * self._tickMs < self._totalTimeMs:
+            if event.name == 'Note On':
+                print str(event.tick * self._tickMs) + ' < ' + str(self._totalTimeMs)
+                firedEvents.append(event)
 
-            # Get all events tkat occur now
-            while event:
-                if event.name == 'Note On':
-                    firedEvents.append(event)
-
+            if self._index < len(self._track):
+                self._index += 1
+                event = self._track[self._index]
+            else:
                 event = None
-                if self._index < len(self._track) - 1:
-                    if self._track[self._index].tick < elapsedTimeMS:
-                        self._index += 1
-                        event = self._track[self._index]
-                    else:
-                        self._delayMs = self._track[self._index].tick * self._tickMs
-                        #print self._delayMs
-                        self._index += 1
-
 
         return firedEvents
             
@@ -75,6 +68,8 @@ class MIDISequencer:
 
     def load(self, midiPath):
         self._midiPattern = midi.read_midifile(midiPath)
+        self._midiPattern.make_ticks_abs()
+        print self._midiPattern
         self._index = 0
 
         # Load the tracks
