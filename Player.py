@@ -14,6 +14,10 @@ class Player(Actor):
         self._laser = laser
 
         self._rotationSpeed = 100 #Degrees per second
+        self._fireDurationSec = 0
+
+    def fire(self, durationSec):
+        self._fireDurationSec = durationSec
 
     def update(self, elapsedTimeSec):
         Actor.update(self, elapsedTimeSec)
@@ -38,3 +42,10 @@ class Player(Actor):
             self._laser.fire(self.rect.center, self._rotation - 90)
         else:
             self._laser.stop()
+
+        if self._fireDurationSec > 0:
+            self._laser.fire(self.rect.center, self._rotation - 90)
+            self._fireDurationSec -= elapsedTimeSec
+        else:
+            self._laser.stop()
+

@@ -13,7 +13,7 @@ from pygame.locals import *
 import ContentManager
 import CollisionMethods
 from MusicPlayer import MusicPlayer
-from MIDISequencer import MIDISequencer
+from GameDirector import GameDirector
 
 from Laser import Laser
 from Player import Player
@@ -45,11 +45,14 @@ class GameRound:
 
         # Load music
         self._musicPlayer = MusicPlayer()
-        self._musicPlayer.load('media\\music\\mary.mid')
+        self._musicPlayer.load('media\\music\\test.mid')
         self._musicPlayer.play()
 
-        self._midiSequencer = MIDISequencer(None)
-        self._midiSequencer.load('python-midi-0.2.3/mary.mid')
+        self._gameDirector = GameDirector(self)
+        self._gameDirector.load('media\\music\\test.mid')
+
+    def getPlayer(self):
+        return self._player
 
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec
@@ -70,7 +73,7 @@ class GameRound:
         self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
 
-        self._midiSequencer.update(elapsedTimeSec)
+        self._gameDirector.update(elapsedTimeSec)
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies
