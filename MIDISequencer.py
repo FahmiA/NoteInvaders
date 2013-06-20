@@ -42,7 +42,7 @@ class MIDITrackSequencer:
                 print str(event.tick * self._tickMs) + ' < ' + str(self._totalTimeMs)
                 firedEvents.append(event)
 
-            if self._index < len(self._track):
+            if self._index < len(self._track) - 1:
                 self._index += 1
                 event = self._track[self._index]
             else:
