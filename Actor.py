@@ -17,7 +17,7 @@ class Actor(pygame.sprite.Sprite):
 
         self._rotation = 0; # Degrees
         self._position = Vec2d(self.rect.center)
-        self._maxVelocity = Vec2d(maxVelocity)
+        self._maxVelocity = maxVelocity
         self._velocity = Vec2d(0, 0)
 
         self._elapsedTimeSec = 0.0

@@ -9,7 +9,7 @@ from Laser import Laser
 class Player(Actor):
 
     def __init__(self, image, laser):
-        Actor.__init__(self, image, (500, 500), (0, 100))
+        Actor.__init__(self, image, (500, 500), 100)
 
         self._laser = laser
 
@@ -32,7 +32,7 @@ class Player(Actor):
 
         # Handle Movement
         if pressedKeys[K_w]:
-            self._velocity = self._maxVelocity.rotated(self._rotation)
+            self._velocity = Vec2d(0, self._maxVelocity).rotated(self._rotation)
         else:
             self._velocity = Vec2d(0, 0)
         self._updatePosition()

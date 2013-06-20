@@ -23,7 +23,6 @@ class MIDITrackSequencer:
 
         microsecondsPerBeat = (60.0 * 1000000.0) / tempo
         self._tickMs = (microsecondsPerBeat / self._resolution) / 1000000.0
-        #print 'Tempo:', self._tickMs
 
     def getTickMS(self):
         return self._tickMs
@@ -39,7 +38,7 @@ class MIDITrackSequencer:
         #print self._totalTimeMs
         while event and event.tick * self._tickMs < self._totalTimeMs:
             if event.name == 'Note On':
-                print str(event.tick * self._tickMs) + ' < ' + str(self._totalTimeMs)
+                #print str(event.tick * self._tickMs) + ' < ' + str(self._totalTimeMs)
                 firedEvents.append(event)
 
             if self._index < len(self._track) - 1:
@@ -83,12 +82,17 @@ class MIDISequencer:
             sequencer = MIDITrackSequencer(self._midiPattern[i], self._midiPattern.resolution)
             self._trackSequencers.append(sequencer)
 
-    def update(self, elapsedTimeSec):
+    def getElapsedRealTime(self):
         currentTimeMs = pygame.time.get_ticks()
         if self._prevTimeMs == None:
             self._prevTimeMs = currentTimeMs
         elapsedTimeMs = currentTimeMs - self._prevTimeMs
         self._prevTimeMs = currentTimeMs
+
+        return elapsedTimeMs
+
+    def update(self):
+        elapsedTimeMs = self.getElapsedRealTime()
 
         firedNotes = []
         for i in range(0, len(self._trackSequencers)):
@@ -96,7 +100,7 @@ class MIDISequencer:
             tickSec = self._trackSequencers[i].getTickMS() * 1000.0
 
             for event in trackEvents:
-                note = Note(event.data[0], i, event.tick * tickSec) # TODO: Look for note off event!!!
+                note = Note(event.data[0], i, 0.2) # TODO: Look for note off event!!!
                 firedNotes.append(note)
 
         return firedNotes

@@ -44,12 +44,13 @@ class GameRound:
         self._enemyImage = ContentManager.load_image('media\\actors\\enemy_arrow.png')
 
         # Load music
+        midiPath = 'media\\music\\mary.mid'
         self._musicPlayer = MusicPlayer()
-        self._musicPlayer.load('media\\music\\mary.mid')
+        self._musicPlayer.load(midiPath)
         self._musicPlayer.play()
 
         self._gameDirector = GameDirector(self)
-        self._gameDirector.load('media\\music\\mary.mid')
+        self._gameDirector.load(midiPath)
 
     def getPlayer(self):
         return self._player
