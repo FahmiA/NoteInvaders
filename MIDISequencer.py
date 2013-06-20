@@ -1,10 +1,14 @@
+import pygame
+from pygame.locals import *
+from pygame.compat import geterror
+
 import midi
 
 class MIDITrackSequencer:
 
     def __init__(self, track, resolution):
         self._track = track
-        self._resolution = resolution / 4000.0 # Ticks per Beat (TPM)
+        self._resolution = resolution / 1000.0 # Ticks per Beat (TPM)
 
         self._tempo = 0 # Beats per Minute (BPM) 
         self._tickMs = 0 # MS duration of one tick
@@ -26,13 +30,13 @@ class MIDITrackSequencer:
 
     def update(self, elapsedTimeMS):
         self._totalTimeMs += elapsedTimeMS
-        # TODO return note event(s) fired or an empty list
         firedEvents = []
 
         if self._index >= len(self._track):
             return firedEvents
 
         event = self._track[self._index]
+        #print self._totalTimeMs
         while event and event.tick * self._tickMs < self._totalTimeMs:
             if event.name == 'Note On':
                 print str(event.tick * self._tickMs) + ' < ' + str(self._totalTimeMs)
@@ -65,11 +69,12 @@ class MIDISequencer:
 
     def __init__(self, gameDirector):
         self._gameDirector = gameDirector
+        self._prevTimeMs = None # Time in Ms of last frame
 
     def load(self, midiPath):
         self._midiPattern = midi.read_midifile(midiPath)
         self._midiPattern.make_ticks_abs()
-        print self._midiPattern
+        #print self._midiPattern
         self._index = 0
 
         # Load the tracks
@@ -79,11 +84,15 @@ class MIDISequencer:
             self._trackSequencers.append(sequencer)
 
     def update(self, elapsedTimeSec):
+        currentTimeMs = pygame.time.get_ticks()
+        if self._prevTimeMs == None:
+            self._prevTimeMs = currentTimeMs
+        elapsedTimeMs = currentTimeMs - self._prevTimeMs
+        self._prevTimeMs = currentTimeMs
 
-        elapsedTimeMS = elapsedTimeSec * 1000.0
         firedNotes = []
         for i in range(0, len(self._trackSequencers)):
-            trackEvents = self._trackSequencers[i].update(elapsedTimeMS)
+            trackEvents = self._trackSequencers[i].update(elapsedTimeMs)
             tickSec = self._trackSequencers[i].getTickMS() * 1000.0
 
             for event in trackEvents:

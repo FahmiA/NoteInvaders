@@ -45,11 +45,11 @@ class GameRound:
 
         # Load music
         self._musicPlayer = MusicPlayer()
-        self._musicPlayer.load('media\\music\\test.mid')
+        self._musicPlayer.load('media\\music\\mary.mid')
         self._musicPlayer.play()
 
         self._gameDirector = GameDirector(self)
-        self._gameDirector.load('media\\music\\test.mid')
+        self._gameDirector.load('media\\music\\mary.mid')
 
     def getPlayer(self):
         return self._player
