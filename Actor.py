@@ -29,6 +29,9 @@ class Actor(pygame.sprite.Sprite):
     def getPosition(self):
         return Vec2d(self._position)
 
+    def setPosition(self, position):
+        self._position = Vec2d(position)
+
     def _updatePosition(self):
         #self._velocity.rotate(self._rotation)
         self._position += self._velocity * self._elapsedTimeSec

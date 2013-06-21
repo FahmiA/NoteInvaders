@@ -7,6 +7,8 @@
 # - Handle score
 # - Handle background?
 
+import random
+
 import pygame
 from pygame.locals import *
 
@@ -21,16 +23,16 @@ from Enemy import Enemy
 
 class GameRound:
 
-    def __init__(self):
+    def __init__(self, windowWidth, windowHeight):
+        self._windowWidth = windowWidth
+        self._windowHeight = windowHeight
+
         self._enemiesGroup = pygame.sprite.Group()
         self._enemyDelaySec = 3.0
         self._enemyElapsedDelaySec = 0.0
 
         self._playerGroup = pygame.sprite.GroupSingle()
         self._projectilesGroup = pygame.sprite.Group()
-
-        self._enemyImages = {}
-        self._maxEnemies = 1 # TODO: For debugging only
 
     def load(self):
         # Load projectiles
@@ -41,31 +43,40 @@ class GameRound:
         self._player = Player(ContentManager.load_image('media\\actors\\player.png'), self._laser)
         self._playerGroup.add(self._player)
 
-        # Load enemies
-        self._enemyImage = ContentManager.load_image('media\\actors\\enemy_arrow.png')
-
         # Load music
-        midiPath = 'media\\music\\morrowind_dance_mix.mid'
-        self._musicPlayer = MusicPlayer()
-        self._musicPlayer.load(midiPath)
-        self._musicPlayer.play()
+        midiPath = 'media\\music\\morrowind_dance_mix'
 
         self._gameDirector = GameDirector(self)
         self._gameDirector.load(self._player, midiPath)
 
-    def getPlayer(self):
-        return self._player
+        self._musicPlayer = MusicPlayer()
+        self._musicPlayer.load(midiPath + '.mid')
+        self._musicPlayer.play()
 
-    def spawnEnemy(self, enemyName):
-        pass
+    def spawnEnemy(self, enemy):
+        spawnSide = int(random.uniform(0, 4))
+        spawnDistance = random.random()
+        spawnX = 0
+        spawnY = 0
+
+        if spawnSide == 0: # Left side
+            spawnX = 0
+            spawnY = self._windowHeight * spawnDistance
+        elif spawnSide == 1: # Top side
+            spawnX = self._windowWidth * spawnDistance
+            spawnY = 0
+        elif spawnSide == 2: # Right side
+            spawnX = self._windowWidth
+            spawnY = self._windowHeight * spawnDistance
+        else: # Bottom side
+            spawnX = self._windowWidth * spawnDistance
+            spawnY = self._windowHeight
+
+        enemy.setPosition((spawnX, spawnY))
+        self._enemiesGroup.add(enemy)
 
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec
-
-        if len(self._enemiesGroup) < self._maxEnemies and self._enemyElapsedDelaySec > self._enemyDelaySec:
-            self._enemyElapsedDelaySec = 0.0
-            enemy = Enemy(self._enemyImage, self._player)
-            self._enemiesGroup.add(enemy)
 
         if self._laser.isFiring():
             self._laser.add(self._projectilesGroup)

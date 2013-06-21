@@ -19,13 +19,13 @@ class EnemyFactory:
         self._enemyImageV = ContentManager.load_image('media\\actors\\enemy_v.png')
 
     def createArrow(self):
-        enemy = Enemy(self._enemyImageArrow, player)
+        enemy = Enemy(self._enemyImageArrow, self._player)
         return enemy
 
     def createTooth(self):
-        enemy = Enemy(self._enemyImageTooth, player)
+        enemy = Enemy(self._enemyImageTooth, self._player)
         return enemy
 
     def createV(self):
-        enemy = Enemy(self._enemyImageV, player)
+        enemy = Enemy(self._enemyImageV, self._player)
         return enemy

@@ -29,7 +29,7 @@ def main():
     pygame.display.flip()
 
     # Create a game round
-    gameRound = GameRound()
+    gameRound = GameRound(1200, 720)
     gameRound.load()
 
     # Start the game loop
