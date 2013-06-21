@@ -1,0 +1,8 @@
+Listen to tempo change event in MIDI files.
+Add three more enemies.
+Sequence enemies based of MIDI.
+Stop player firing on note off MIDI event.
+Create a JSON file to accomidate MIDI file describing:
+ * Default tempo (if it can't easily be extracted from the MIDI file).
+ * Player track (any maybe notes?)
+ * Enemy tracks (and maybe notes?) for each enemy type.

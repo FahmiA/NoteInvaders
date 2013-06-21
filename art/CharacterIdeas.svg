@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.5953611"
-     inkscape:cx="353.58271"
-     inkscape:cy="595.94815"
+     inkscape:zoom="0.64884028"
+     inkscape:cx="108.25666"
+     inkscape:cy="623.39812"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -70,24 +70,24 @@
          y="659.00916" />
     </g>
     <rect
-       style="fill:#e3dbdb;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
+       style="fill:#e3dbdb;fill-opacity:1;stroke:#000000;stroke-width:13.78782654;stroke-opacity:1"
        id="rect2984"
-       width="636.44379"
-       height="318.22189"
-       x="-135.13533"
-       y="-95.198318" />
+       width="1224.4811"
+       height="314.43405"
+       x="-133.24141"
+       y="-93.304405" />
     <path
        style="fill:#efec06;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
        inkscape:transform-center-x="19.544126"
        inkscape:transform-center-y="19.544126"
-       d="M 131.69967,-48.235119 97.848253,78.100101 38.996833,170.86388 -63.394147,146.28798 -89.542189,39.467721 5.3644531,-14.383699 z"
+       d="M 131.69967,-45.636872 97.848253,80.698348 38.996833,173.46213 -63.394147,148.88623 -89.542189,42.065968 5.3644531,-11.785452 z"
        id="path2985"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
     <path
        style="fill:#ef6b06;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
        inkscape:transform-center-x="-32.153748"
-       d="m 454.23703,54.104409 -166.58636,28.72072 -79.50791,82.663121 31.8344,-112.580261 -31.8344,-110.18743 81.58016,83.85953 z"
+       d="m 454.23703,63.912635 -166.58636,28.72072 -79.50791,82.663115 31.8344,-112.580255 -31.8344,-110.18743 81.58016,83.85953 z"
        id="path3760"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
@@ -229,7 +229,7 @@
        inkscape:export-ydpi="168.028" />
     <g
        id="g3809-1"
-       transform="matrix(0.99999983,5.7851512e-4,-5.7851512e-4,0.99999983,-103.96604,-277.13818)"
+       transform="matrix(0.99999983,5.7851512e-4,-5.7851512e-4,0.99999983,36.03396,-277.13818)"
        inkscape:export-filename="C:\Users\Fahmi\Documents\Game Development\WoGaDeMo\media\projectiles\laser.png"
        inkscape:export-xdpi="149.22"
        inkscape:export-ydpi="149.22">
@@ -248,5 +248,40 @@
          x="245.14142"
          y="659.00916" />
     </g>
+    <path
+       style="fill:#039388;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
+       d="M 509.39225,-42.673472 702.08983,66.758786 504.63779,170.49873 623.05403,63.033433 z"
+       id="rect3008-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -201.86143,63.176605 c 1172.48458,3.312104 1354.65023,0 1354.65023,0"
+       id="path3797"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#b5692f;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-opacity:1"
+       d="M 1013.8015,67.935346 793.79075,174.67536 738.17436,144.50981 801.40157,69.293272 738.42089,-24.482132 828.4198,-46.850108 z"
+       id="rect3802"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="fill:#039388;fill-opacity:1;stroke:#000000;stroke-width:3.012398;stroke-opacity:1"
+       d="m 201.59853,351.1747 -32.96534,58.04818 -31.25059,-59.48041 32.37281,35.67168 z"
+       id="rect3008-1-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="C:\Users\Fahmi\Documents\Game Development\WoGaDeMo\media\actors\enemy_v.png"
+       inkscape:export-xdpi="141.38438"
+       inkscape:export-ydpi="141.38438" />
+    <path
+       style="fill:#b5692f;fill-opacity:1;stroke:#000000;stroke-width:2.27117562;stroke-opacity:1"
+       d="m 241.01417,412.83083 -24.38191,-40.47367 7.35539,-19.40268 18.2453,14.12058 20.72555,-14.06703 5.31122,19.55108 z"
+       id="rect3802-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:export-filename="C:\Users\Fahmi\Documents\Game Development\WoGaDeMo\media\actors\enemy_tooth.png"
+       inkscape:export-xdpi="141.03819"
+       inkscape:export-ydpi="141.03819" />
   </g>
 </svg>

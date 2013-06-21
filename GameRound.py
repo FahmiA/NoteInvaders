@@ -29,6 +29,7 @@ class GameRound:
         self._playerGroup = pygame.sprite.GroupSingle()
         self._projectilesGroup = pygame.sprite.Group()
 
+        self._enemyImages = {}
         self._maxEnemies = 1 # TODO: For debugging only
 
     def load(self):
@@ -44,16 +45,19 @@ class GameRound:
         self._enemyImage = ContentManager.load_image('media\\actors\\enemy_arrow.png')
 
         # Load music
-        midiPath = 'media\\music\\mary.mid'
+        midiPath = 'media\\music\\morrowind_dance_mix.mid'
         self._musicPlayer = MusicPlayer()
         self._musicPlayer.load(midiPath)
         self._musicPlayer.play()
 
         self._gameDirector = GameDirector(self)
-        self._gameDirector.load(midiPath)
+        self._gameDirector.load(self._player, midiPath)
 
     def getPlayer(self):
         return self._player
+
+    def spawnEnemy(self, enemyName):
+        pass
 
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec

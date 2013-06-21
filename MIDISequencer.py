@@ -14,7 +14,7 @@ class MIDITrackSequencer:
         self._tickMs = 0 # MS duration of one tick
         self._delayMs = -1 # MS until next event
 
-        self._setTempo(120) # A reasonable default tempo
+        self._setTempo(150) # A reasonable default tempo
         self._index = 0 # Next event to look at after delayMS time
         self._totalTimeMs = 0
 
@@ -39,7 +39,11 @@ class MIDITrackSequencer:
         while event and event.tick * self._tickMs < self._totalTimeMs:
             if event.name == 'Note On':
                 #print str(event.tick * self._tickMs) + ' < ' + str(self._totalTimeMs)
-                firedEvents.append(event)
+                self._handleNoteOn(event, firedEvents)
+            elif event.name == 'Note Off':
+                self._handleNoteOff()
+            elif event.name == 'Set Tempo':
+                self._handleTempoChange(event)
 
             if self._index < len(self._track) - 1:
                 self._index += 1
@@ -48,6 +52,16 @@ class MIDITrackSequencer:
                 event = None
 
         return firedEvents
+
+    def _handleNoteOn(self, event, firedEvents):
+        firedEvents.append(event)
+
+    def _handleNoteOff(self):
+        pass # TODO: Implement
+
+    def _handleTempoChange(self, event):
+        self._setTempo(event.get_bpm())
+        print 'Tempo changed to: ' + event.get_bpm()
             
 class Note:
     def __init__(self, note, track, durationSec):
