@@ -14,6 +14,8 @@ class GameDirector:
     def __init__(self, gameRound):
         self._gameRound = gameRound
         self._midiSequencer = None
+        
+        self._stopped = False
 
         self._enemyFactory = EnemyFactory()
 
@@ -28,7 +30,13 @@ class GameDirector:
         self._midiSequencer = MIDISequencer(defaultTempo)
         self._midiSequencer.load(songPath + '.mid')
 
+    def stop(self):
+        self._stopped = True
+
     def update(self, elapsedTimeSec):
+        if self._stopped:
+            return
+
         pressedKeys = pygame.key.get_pressed()
 
         notes = self._midiSequencer.update()

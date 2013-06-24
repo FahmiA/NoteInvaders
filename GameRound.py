@@ -14,6 +14,7 @@ from pygame.locals import *
 
 import ContentManager
 import CollisionMethods
+from TextSprite import TextSprite
 from MusicPlayer import MusicPlayer
 from GameDirector import GameDirector
 
@@ -22,6 +23,8 @@ from Player import Player
 from Enemy import Enemy
 
 class GameRound:
+
+    START_LIVES = 3
 
     def __init__(self, windowWidth, windowHeight):
         self._windowWidth = windowWidth
@@ -33,6 +36,10 @@ class GameRound:
 
         self._playerGroup = pygame.sprite.GroupSingle()
         self._projectilesGroup = pygame.sprite.Group()
+        self._hudGroup = pygame.sprite.Group()
+
+        self._score = 0
+        self._lives = self.START_LIVES
 
     def load(self):
         # Load projectiles
@@ -43,12 +50,21 @@ class GameRound:
         self._player = Player(ContentManager.load_image('media\\actors\\player.png'), self._laser)
         self._playerGroup.add(self._player)
 
-        # Load music
+        # Load HUD
+        self._font = ContentManager.load_font(36)
+        self._scoreSprite = TextSprite(self._font, pygame.Color('black'), (30, 30))
+        self._livesSprite = TextSprite(self._font, pygame.Color('black'), (30, 70))
+        self._livesSprite.updateText('Lives: ' + str(self._lives))
+        self._hudGroup.add(self._scoreSprite, self._livesSprite)
+
+        # Load music configuration
         midiPath = 'media\\music\\morrowind_dance_mix'
 
+        # Load game director
         self._gameDirector = GameDirector(self)
         self._gameDirector.load(self._player, midiPath)
 
+        # Load music
         self._musicPlayer = MusicPlayer()
         self._musicPlayer.load(midiPath + '.mid')
         self._musicPlayer.play()
@@ -88,15 +104,35 @@ class GameRound:
         self._playerGroup.update(elapsedTimeSec)
         self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
+        self._hudGroup.update(elapsedTimeSec)
 
         self._gameDirector.update(elapsedTimeSec)
+
+    def _handlePlayerDeath(self):
+        self._lives -= 1
+
+        if self._lives < 0:
+            self._gameDirector.stop()
+        else:
+            self._livesSprite.updateText('Lives: ' + str(self._lives))
+            self._enemiesGroup.empty()
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies
         collidedEnemies = pygame.sprite.spritecollide(self._laser, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
+
+        self._score += len(collidedEnemies) * 100
+        self._scoreSprite.updateText('Score: ' + str(self._score))
+
+        # Check collisions between player and enemies
+        collidedEnemies = pygame.sprite.spritecollide(self._player, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
+        if collidedEnemies:
+            self._handlePlayerDeath()
 
     def draw(self, screen):
         self._projectilesGroup.draw(screen)
         self._playerGroup.draw(screen)
         self._enemiesGroup.draw(screen)
 
+        [text.render() for text in self._hudGroup.sprites()]
+        self._hudGroup.draw(screen)

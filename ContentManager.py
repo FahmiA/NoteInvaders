@@ -24,3 +24,12 @@ def load_image(name, colorkey = -1):
             colorkey = image.get_at((0,0))
         image.set_colorkey(colorkey, RLEACCEL)
     return image#, image.get_rect()
+
+def load_font(fontSize):
+    font = None
+
+    if pygame.font:
+        font = pygame.font.Font(None, fontSize)
+
+    return font
+

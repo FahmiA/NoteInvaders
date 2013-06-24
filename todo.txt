@@ -1,3 +1,14 @@
 Stop player firing on note off MIDI event.
+Improve performance of laser collision. Use line, not pixel mask, collision.
+Make laser run off screen.
+Implement a scoring mechanism.
+ * Points for each enemy death.
+ * [If time] Combos
+Implement a lives mechanism.
+ * 3 lives initially.
+ * Player dies when collided with enemy.
+ * All enemies die when player dies (screen is cleared of enemies)
+Scale everything to window size
+
 DONE. Create a JSON file to accomidate MIDI file describing:
  * DONE. Default tempo (if it can't easily be extracted from the MIDI file).
