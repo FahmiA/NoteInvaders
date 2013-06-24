@@ -1,3 +1,3 @@
 Stop player firing on note off MIDI event.
-Create a JSON file to accomidate MIDI file describing:
- * Default tempo (if it can't easily be extracted from the MIDI file).
+DONE. Create a JSON file to accomidate MIDI file describing:
+ * DONE. Default tempo (if it can't easily be extracted from the MIDI file).

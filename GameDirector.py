@@ -21,13 +21,12 @@ class GameDirector:
         self._player = player
         self._enemyFactory.load(player)
 
-        self._midiSequencer = MIDISequencer(None) #TODO: Not need for this argument
-        self._midiSequencer.load(songPath + '.mid')
-
         with open(songPath + '.json', 'r') as songInfoJSON:
             self._songInfo = json.load(songInfoJSON)
 
-        print self._songInfo
+        defaultTempo = float(self._songInfo.get('defaultTempo', 120)) # A reasonable default tempo
+        self._midiSequencer = MIDISequencer(defaultTempo)
+        self._midiSequencer.load(songPath + '.mid')
 
     def update(self, elapsedTimeSec):
         pressedKeys = pygame.key.get_pressed()

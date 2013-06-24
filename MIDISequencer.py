@@ -6,7 +6,7 @@ import midi
 
 class MIDITrackSequencer:
 
-    def __init__(self, track, resolution):
+    def __init__(self, track, resolution, defaultTempo):
         self._track = track
         self._resolution = resolution / 1000.0 # Ticks per Beat (TPM)
 
@@ -14,7 +14,7 @@ class MIDITrackSequencer:
         self._tickMs = 0 # MS duration of one tick
         self._delayMs = -1 # MS until next event
 
-        self._setTempo(150) # A reasonable default tempo
+        self._setTempo(defaultTempo)
         self._index = 0 # Next event to look at after delayMS time
         self._totalTimeMs = 0
 
@@ -80,20 +80,19 @@ class Note:
 
 class MIDISequencer:
 
-    def __init__(self, gameDirector):
-        self._gameDirector = gameDirector
+    def __init__(self, defaultTempo):
+        self._defaultTempo = defaultTempo
         self._prevTimeMs = None # Time in Ms of last frame
 
     def load(self, midiPath):
         self._midiPattern = midi.read_midifile(midiPath)
         self._midiPattern.make_ticks_abs()
-        #print self._midiPattern
         self._index = 0
 
         # Load the tracks
         self._trackSequencers = []
         for i in range(1, len(self._midiPattern)):
-            sequencer = MIDITrackSequencer(self._midiPattern[i], self._midiPattern.resolution)
+            sequencer = MIDITrackSequencer(self._midiPattern[i], self._midiPattern.resolution, self._defaultTempo)
             self._trackSequencers.append(sequencer)
 
     def getElapsedRealTime(self):
