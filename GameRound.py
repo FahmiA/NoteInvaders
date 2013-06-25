@@ -58,7 +58,8 @@ class GameRound:
         self._hudGroup.add(self._scoreSprite, self._livesSprite)
 
         # Load music configuration
-        midiPath = 'media\\music\\morrowind_dance_mix'
+        midiPath = 'media\\music\\battlefield1942'
+        #midiPath = 'media\\music\\morrowind_dance_mix'
 
         # Load game director
         self._gameDirector = GameDirector(self)
@@ -119,13 +120,14 @@ class GameRound:
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies
-        collidedEnemies = pygame.sprite.spritecollide(self._laser, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
+        if self._laser.isFiring():
+            collidedEnemies = pygame.sprite.spritecollide(self._laser, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
 
-        self._score += len(collidedEnemies) * 100
-        self._scoreSprite.updateText('Score: ' + str(self._score))
+            self._score += len(collidedEnemies) * 100
+            self._scoreSprite.updateText('Score: ' + str(self._score))
 
         # Check collisions between player and enemies
-        collidedEnemies = pygame.sprite.spritecollide(self._player, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
+        collidedEnemies = pygame.sprite.spritecollide(self._player, self._enemiesGroup, True, CollisionMethods.collideRectThenMask)
         if collidedEnemies:
             self._handlePlayerDeath()
 

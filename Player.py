@@ -30,12 +30,16 @@ class Player(Actor):
         elif pressedKeys[K_a]:
             self._rotate(-self._rotationSpeed)
 
-        # Handle Movement
+        # Handle keyboard movement
         if pressedKeys[K_w]:
             self._velocity = Vec2d(0, self._maxVelocity).rotated(self._rotation)
+            self._updatePosition()
         else:
             self._velocity = Vec2d(0, 0)
-        self._updatePosition()
+            self._updatePosition()
+
+        # Handle mouse movement
+        mousePos = pygame.mouse.get_pos()
 
         # Handle firing laser
         if pressedKeys[K_SPACE]:

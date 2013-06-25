@@ -1,0 +1,13 @@
+{
+    "defaultTempo": 90,
+    "playerFireEvents": {
+        "0": [-1]
+    },
+    "arrowSpawnEvents": {
+        "2": [-1]
+    },
+    "toothSpawnEvents": {
+    },
+    "vSpawnEvents": {
+    }
+}
