@@ -1,5 +1,5 @@
 5 Day Plan:
-25th: Find and integrate at least onegood music track
+25th: Find and integrate at least one good music track (mostly done)
 26th: Create UI for game start and game end
 27th: Implement High-Score leaderboards
 28: Flesh out all graphics
