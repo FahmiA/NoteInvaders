@@ -1,3 +1,11 @@
+5 Day Plan:
+25th: Find and integrate at least onegood music track
+26th: Create UI for game start and game end
+27th: Implement High-Score leaderboards
+28: Flesh out all graphics
+29: Flesh out all graphics and any additional tasks
+30: Deployment and any additional tasks
+
 Stop player firing on note off MIDI event.
 Improve performance of laser collision. Use line, not pixel mask, collision.
 Make laser run off screen.
