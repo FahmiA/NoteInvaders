@@ -9,7 +9,8 @@ class Laser(pygame.sprite.Sprite):
         # Call Sprite initializer
         pygame.sprite.Sprite.__init__(self) 
 
-        self._originalImage = image
+        self._originalImage = pygame.transform.scale(image, (1500, image.get_rect().height)) # Make laser long
+        self._originalImage.get_rect(width=1200)
         self.image = image
         self.rect = image.get_rect()
 
