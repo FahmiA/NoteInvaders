@@ -31,7 +31,7 @@ class NoteWars:
         # Create the bckground
         self._background = pygame.Surface(self._screen.get_size())
         self._background = self._background.convert()
-        self._background.fill((255, 255, 255))
+        self._background.fill((0, 0, 0))
 
         # Load the main menu
         self._mainMenu.load(self)

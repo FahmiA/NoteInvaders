@@ -14,18 +14,18 @@ class EnemyFactory:
     def load(self, player):
         self._player = player
 
-        self._enemyImageArrow = ContentManager.load_image('media\\actors\\enemy_arrow.png')
-        self._enemyImageTooth = ContentManager.load_image('media\\actors\\enemy_tooth.png')
-        self._enemyImageV = ContentManager.load_image('media\\actors\\enemy_v.png')
+        self._enemy1Image= ContentManager.load_image('media\\actors\\enemy1.png')
+        self._enemy2Image= ContentManager.load_image('media\\actors\\enemy2.png')
+        self._enemy3Image = ContentManager.load_image('media\\actors\\enemy3.png')
 
-    def createArrow(self):
-        enemy = Enemy(self._enemyImageArrow, self._player)
+    def createEnemy1(self):
+        enemy = Enemy(self._enemy1Image, self._player)
         return enemy
 
-    def createTooth(self):
-        enemy = Enemy(self._enemyImageTooth, self._player)
+    def createEnemy2(self):
+        enemy = Enemy(self._enemy2Image, self._player)
         return enemy
 
-    def createV(self):
-        enemy = Enemy(self._enemyImageV, self._player)
+    def createEnemy3(self):
+        enemy = Enemy(self._enemy3Image, self._player)
         return enemy

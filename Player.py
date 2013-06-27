@@ -8,8 +8,8 @@ from Laser import Laser
 
 class Player(Actor):
 
-    def __init__(self, image, laser):
-        Actor.__init__(self, image, (500, 500), 100)
+    def __init__(self, image, laser, position):
+        Actor.__init__(self, image, position, 100)
 
         self._laser = laser
 

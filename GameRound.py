@@ -48,7 +48,8 @@ class GameRound:
         self._projectilesGroup.add(self._laser)
 
         # Load player
-        self._player = Player(ContentManager.load_image('media\\actors\\player.png'), self._laser)
+        self._playerSpawnPos = (self._windowWidth / 2, self._windowHeight / 2)
+        self._player = Player(ContentManager.load_image('media\\actors\\player.png'), self._laser, self._playerSpawnPos)
         self._playerGroup.add(self._player)
 
         # Load HUD
@@ -122,6 +123,7 @@ class GameRound:
         else:
             self._livesSprite.updateText('Lives: ' + str(self._lives))
             self._enemiesGroup.empty()
+            self._player.setPosition(self._playerSpawnPos)
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies

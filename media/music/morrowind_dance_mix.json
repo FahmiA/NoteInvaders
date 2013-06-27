@@ -3,11 +3,11 @@
     "playerFireEvents": {
         "6": [-1]
     },
-    "arrowSpawnEvents": {
+    "enemy1SpawnEvents": {
         "3": [-1]
     },
-    "toothSpawnEvents": {
+     "enemy2SpawnEvents": {
     },
-    "vSpawnEvents": {
+    "enemy3SpawnEvents": {
     }
 }

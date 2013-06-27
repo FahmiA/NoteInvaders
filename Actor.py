@@ -10,9 +10,13 @@ class Actor(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self) 
 
         # Process the arguments
-        self._originalImage = image
-        self.image = image
-        self.rect = image.get_rect()
+        # Reduce image size
+        imageSize = image.get_rect()
+        actorSize = (int(imageSize.width * 0.7), int(imageSize.height * 0.7))
+        self._originalImage = pygame.transform.scale(image, actorSize) # Reduce actor size
+
+        self.image = self._originalImage
+        self.rect = self._originalImage.get_rect()
         self.rect.center = (position[0], position[1])
 
         self._rotation = 0; # Degrees

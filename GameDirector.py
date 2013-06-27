@@ -50,17 +50,17 @@ class GameDirector:
                 self._player.fire(noteEvent.getDurationSec())
 
             # Enemy: Arrow
-            arrowNotes = self._songInfo['arrowSpawnEvents'].get(track, [])
-            if note in arrowNotes or -1 in arrowNotes:
-                enemy = self._enemyFactory.createArrow()
+            enemy1Notes = self._songInfo['enemy1SpawnEvents'].get(track, [])
+            if note in enemy1Notes or -1 in enemy1Notes:
+                enemy = self._enemyFactory.createEnemy1()
                 self._gameRound.spawnEnemy(enemy)
 
-            toothNotes = self._songInfo['toothSpawnEvents'].get(track, [])
-            if note in toothNotes or -1 in toothNotes:
-                enemy = self._enemyFactory.createTooth()
+            enemy2Notes = self._songInfo['enemy2SpawnEvents'].get(track, [])
+            if note in enemy2Notes or -1 in enemy2Notes:
+                enemy = self._enemyFactory.createEnemy2()
                 self._gameRound.spawnEnemy(enemy)
 
-            vNotes = self._songInfo['vSpawnEvents'].get(track, [])
-            if note in vNotes or -1 in vNotes:
-                enemy = self._enemyFactory.createV()
+            enemy3Notes = self._songInfo['enemy3SpawnEvents'].get(track, [])
+            if note in enemy3Notes or -1 in enemy3Notes:
+                enemy = self._enemyFactory.createEnemy3()
                 self._gameRound.spawnEnemy(enemy)
