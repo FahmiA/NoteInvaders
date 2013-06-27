@@ -26,7 +26,8 @@ class GameRound:
 
     START_LIVES = 3
 
-    def __init__(self, windowWidth, windowHeight):
+    def __init__(self, noteWars, windowWidth, windowHeight):
+        self._noteWars = noteWars
         self._windowWidth = windowWidth
         self._windowHeight = windowHeight
 
@@ -41,7 +42,7 @@ class GameRound:
         self._score = 0
         self._lives = self.START_LIVES
 
-    def load(self):
+    def load(self, songPath):
         # Load projectiles
         self._laser = Laser(ContentManager.load_image('media\\projectiles\\laser.png'))
         self._projectilesGroup.add(self._laser)
@@ -58,16 +59,16 @@ class GameRound:
         self._hudGroup.add(self._scoreSprite, self._livesSprite)
 
         # Load music configuration
-        midiPath = 'media\\music\\battlefield1942'
+        #midiPath = 'media\\music\\battlefield1942'
         #midiPath = 'media\\music\\morrowind_dance_mix'
 
         # Load game director
         self._gameDirector = GameDirector(self)
-        self._gameDirector.load(self._player, midiPath)
+        self._gameDirector.load(self._player, songPath)
 
         # Load music
         self._musicPlayer = MusicPlayer()
-        self._musicPlayer.load(midiPath + '.mid')
+        self._musicPlayer.load(songPath + '.mid')
         self._musicPlayer.play()
 
     def spawnEnemy(self, enemy):
@@ -109,11 +110,15 @@ class GameRound:
 
         self._gameDirector.update(elapsedTimeSec)
 
+    def stop(self):
+        self._musicPlayer.stop()
+
     def _handlePlayerDeath(self):
         self._lives -= 1
 
         if self._lives < 0:
             self._gameDirector.stop()
+            self._noteWars.goToMainMenu()
         else:
             self._livesSprite.updateText('Lives: ' + str(self._lives))
             self._enemiesGroup.empty()

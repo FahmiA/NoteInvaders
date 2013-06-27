@@ -4,6 +4,8 @@ import pygame
 from pygame.locals import *
 from pygame.compat import geterror
 
+from MainMenu import MainMenu
+
 import ContentManager
 from Player import Player
 from GameRound import GameRound
@@ -14,56 +16,81 @@ if not pygame.font:
 if not pygame.mixer:
     print ('Warning, sound disabled')
 
-def main():
-    # Create the screen
-    screen = pygame.display.set_mode((1280, 720)) # 720p
-    pygame.display.set_caption('Game Title TBD')
+class NoteWars:
 
-    # Create the bckground
-    background = pygame.Surface(screen.get_size())
-    background = background.convert()
-    background.fill((255, 255, 255))
+    def __init__(self):
+        self._running = False
+        self._mainMenu = MainMenu()
+        self._gameRound = None
 
-    # Display the background
-    screen.blit(background, (0, 0))
-    pygame.display.flip()
+    def loadResources(self):
+        # Create the screen
+        self._screen = pygame.display.set_mode((1280, 720)) # 720p
+        pygame.display.set_caption('Note Wars')
 
-    # Create a game round
-    gameRound = GameRound(1200, 720)
-    gameRound.load()
+        # Create the bckground
+        self._background = pygame.Surface(self._screen.get_size())
+        self._background = self._background.convert()
+        self._background.fill((255, 255, 255))
 
-    # Start the game loop
-    clock = pygame.time.Clock()
-    elapsedTimeMs = 0
-    elapsedTimeSec = 0
-    going = True
+        # Load the main menu
+        self._mainMenu.load(self)
 
-    while going:
-        elapsedTimeMs = clock.tick(60) # Limit to 60 frames per second
-        elapsedTimeSec = 1.0 / elapsedTimeMs
+        self._running = True
 
-        # Listen to window events
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                going = False
-            elif event.type == KEYDOWN and event.key == K_ESCAPE:
-                going = False
-        
+    def run(self):
+        # Start the game loop
+        clock = pygame.time.Clock()
+        elapsedTimeMs = 0
+        elapsedTimeSec = 0
 
-        # Update the game state
-        gameRound.update(elapsedTimeSec)
+        while self._running:
+            elapsedTimeMs = clock.tick(60) # Limit to 60 frames per second
+            elapsedTimeSec = 1.0 / elapsedTimeMs
 
-        # Render the game state
-        screen.blit(background, (0, 0))
-        gameRound.draw(screen)
+            # Listen to window events
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    self._running = False
+                elif event.type == KEYDOWN and event.key == K_ESCAPE:
+                    self._running = False
+                else:
+                    # The main menu will listen to the remaining events
+                    self._mainMenu.doEvent(event)
 
-        pygame.display.flip()
+            # Update the game state
+            if self._gameRound:
+                self._gameRound.update(elapsedTimeSec)
+
+            # Render the game
+            self._screen.blit(self._background, (0, 0))
+            self._mainMenu.render()
+            if self._gameRound:
+                self._gameRound.draw(self._screen)
+
+            # Show the new frame
+            pygame.display.flip()
+
+    def quit(self):
+        self._running = False
+
+    def goToMainMenu(self):
+        self._gameRound.stop()
+        self._gameRound = None
+        self._mainMenu.show()
+
+    def goPlayGameRound(self, songPath):
+        self._gameRound = GameRound(self, self._screen.get_width(), self._screen.get_height())
+        self._gameRound.load(songPath)
+        self._mainMenu.hide()
 
 
 if __name__ == '__main__':
     # And we're off!
     pygame.init()
 
-    main()
+    noteWars = NoteWars()
+    noteWars.loadResources()
+    noteWars.run()
 
     pygame.quit()
