@@ -20,7 +20,7 @@ class NoteWars:
 
     def __init__(self):
         self._running = False
-        self._mainMenu = MainMenu()
+        self._mainMenu = MainMenu(self)
         self._gameRound = None
 
     def loadResources(self):
@@ -34,7 +34,7 @@ class NoteWars:
         self._background.fill((0, 0, 0))
 
         # Load the main menu
-        self._mainMenu.load(self)
+        self._mainMenu.load()
 
         self._running = True
 
