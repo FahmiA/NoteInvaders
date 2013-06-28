@@ -6,7 +6,8 @@
     "enemy1SpawnEvents": {
         "3": [-1]
     },
-     "enemy2SpawnEvents": {
+    "enemy2SpawnEvents": {
+        "9": [38]
     },
     "enemy3SpawnEvents": {
     }

@@ -12,7 +12,7 @@ class Actor(pygame.sprite.Sprite):
         # Process the arguments
         # Reduce image size
         imageSize = image.get_rect()
-        actorSize = (int(imageSize.width * 0.7), int(imageSize.height * 0.7))
+        actorSize = (int(imageSize.width * 0.7), int(imageSize.height * 0.6))
         self._originalImage = pygame.transform.scale(image, actorSize) # Reduce actor size
 
         self.image = self._originalImage
