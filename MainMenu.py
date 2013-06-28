@@ -33,7 +33,7 @@ class MainMenu():
         menuTable = gui.Table()
 
         # Add the title banner
-        bannerImage = gui.Image('media\\menu\\NoteWarsLogo.png')
+        bannerImage = gui.Image('media/menu/NoteWarsLogo.png')
         menuTable.tr() # New table row
         menuTable.td(bannerImage)
 
@@ -50,14 +50,14 @@ class MainMenu():
         menuTable.td(instLabel)
 
         # Add button to play a song
-        song1Button = gui.Button("Play Song 1")
-        song1Button.connect(gui.CLICK, self._noteWars.goPlayGameRound, 'media\\music\\battlefield1942')
+        song1Button = gui.Button("Play Song: Battlefield1942")
+        song1Button.connect(gui.CLICK, self._noteWars.goPlayGameRound, 'media/music/battlefield1942')
         menuTable.tr() # New table row
         menuTable.td(song1Button)
 
         # Add button to play a song
-        song2Button = gui.Button("Play Song 2")
-        song2Button.connect(gui.CLICK, self._noteWars.goPlayGameRound, 'media\\music\\morrowind_dance_mix')
+        song2Button = gui.Button("Play Song: Morrowing Dance Mix")
+        song2Button.connect(gui.CLICK, self._noteWars.goPlayGameRound, 'media/music/morrowind_dance_mix')
         menuTable.tr() # New table row
         menuTable.td(song2Button)
 

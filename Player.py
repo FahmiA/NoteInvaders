@@ -22,30 +22,30 @@ class Player(Actor):
     def update(self, elapsedTimeSec):
         Actor.update(self, elapsedTimeSec)
 
-        pressedKeys = pygame.key.get_pressed()
-
-        # Handle rotation
-        if pressedKeys[K_d]:
-            self._rotate(self._rotationSpeed)
-        elif pressedKeys[K_a]:
-            self._rotate(-self._rotationSpeed)
+        # Handle mouse rotation
+        mousePos = pygame.mouse.get_pos()
+        angleToMouse = (Vec2d(mousePos) - self.getPosition()).get_angle() - 90
+        self._rotate(angleToMouse)
 
         # Handle keyboard movement
+        pressedKeys = pygame.key.get_pressed()
+        self._velocity = Vec2d(0, 0)
         if pressedKeys[K_w]:
-            self._velocity = Vec2d(0, self._maxVelocity).rotated(self._rotation)
-            self._updatePosition()
-        else:
-            self._velocity = Vec2d(0, 0)
-            self._updatePosition()
-
-        # Handle mouse movement
-        mousePos = pygame.mouse.get_pos()
+            self._velocity.y -= 1.0
+        if pressedKeys[K_s]:
+            self._velocity.y += 1.0
+        if pressedKeys[K_a]:
+            self._velocity.x -= 1.0
+        if pressedKeys[K_d]:
+            self._velocity.x += 1.0
+        self._velocity = self._truncate(self._velocity * self._maxVelocity, self._maxVelocity)
+        self._updatePosition()
 
         # Handle firing laser
-        if pressedKeys[K_SPACE]:
-            self._laser.fire(self.rect.center, self._rotation - 90)
-        else:
-            self._laser.stop()
+        #if pressedKeys[K_SPACE]:
+            #self._laser.fire(self.rect.center, self._rotation - 90)
+        #else:
+            #self._laser.stop()
 
         if self._fireDurationSec > 0:
             self._laser.fire(self.rect.center, self._rotation - 90)

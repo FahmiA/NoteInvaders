@@ -61,7 +61,7 @@ class GameRound:
 
         # Load music configuration
         #songPath = 'media\\music\\battlefield1942'
-        songPath = 'media\\music\\test'
+        #songPath = 'media\\music\\test'
 
         # Load game director
         self._gameDirector = GameDirector(self)

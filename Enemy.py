@@ -12,11 +12,6 @@ class Enemy(Actor):
         
         self._target = target
 
-    def truncate(self, vector, maxLength):
-        result = Vec2d(vector)
-        if result.get_length() > maxLength:
-            result = result.normalized() * maxLength
-        return result
 
     def update(self, elapsedTimeSec):
         Actor.update(self, elapsedTimeSec)
@@ -25,13 +20,13 @@ class Enemy(Actor):
         desiredVelocity *= self._maxVelocity
 
         steering = desiredVelocity - self._velocity
-        steering = self.truncate(steering, 8)
+        steering = self._truncate(steering, 8)
         steering = steering / 10
 
-        self._velocity = self.truncate(self._velocity + steering, self._maxVelocity)
+        self._velocity = self._truncate(self._velocity + steering, self._maxVelocity)
 
-        self._rotation = self._velocity.get_angle() - 90
-        self._rotate(0)
+        rotation = self._velocity.get_angle() - 90
+        self._rotate(rotation)
 
         self._updatePosition()
 

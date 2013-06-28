@@ -41,11 +41,17 @@ class Actor(pygame.sprite.Sprite):
         self._position += self._velocity * self._elapsedTimeSec
         self.rect.center = (self._position[0], self._position[1])
 
-    def _rotate(self, deltaRotation):
-        self._rotation += deltaRotation * self._elapsedTimeSec
+    def _rotate(self, rotation):
+        self._rotation = rotation
 
         center = self.rect.center
         self.image = pygame.transform.rotate(self._originalImage, -self._rotation)
         self.rect = self.image.get_rect()
         self.rect.center = center
+
+    def _truncate(self, vector, maxLength):
+        result = Vec2d(vector)
+        if result.get_length() > maxLength:
+            result = result.normalized() * maxLength
+        return result
 

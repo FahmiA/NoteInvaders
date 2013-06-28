@@ -90,7 +90,8 @@ class NoteWars:
         self._mainMenu.addHighScore(self._currentSongName, score, 'You survived :)')
 
     def goPlayGameRound(self, songPath):
-        self._currentSongName = songPath.split('\\')[-1]
+        self._currentSongName = songPath.split('/')[-1]
+        self._currentSongName = self._currentSongName.replace('_', ' ')
         self._gameRound = GameRound(self, self._screen.get_width(), self._screen.get_height())
         self._gameRound.load(songPath)
         self._mainMenu.hide()
