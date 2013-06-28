@@ -64,3 +64,6 @@ class GameDirector:
             if note in enemy3Notes or -1 in enemy3Notes:
                 enemy = self._enemyFactory.createEnemy3()
                 self._gameRound.spawnEnemy(enemy)
+
+        if self._midiSequencer.isFinished():
+            self._gameRound.roundComplete()

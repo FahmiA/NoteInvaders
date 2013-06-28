@@ -6,6 +6,7 @@ from pgu import gui
 import ContentManager
 
 from HighScoreMenu import HighScoreMenu
+from HighScoreDialog import HighScoreDialog
 
 class MainMenu():
 
@@ -62,7 +63,7 @@ class MainMenu():
 
         # Add button to view high scores
         highScoresButton = gui.Button("High Scores")
-        highScoresButton.connect(gui.CLICK, self._displayHighScores)
+        highScoresButton.connect(gui.CLICK, self.displayHighScores)
         menuTable.tr() # New table row
         menuTable.td(highScoresButton)
 
@@ -78,9 +79,13 @@ class MainMenu():
         # Signify that the main menu is visible
         self._isVisible = True
 
-    def _displayHighScores(self):
+    def displayHighScores(self):
         self._isVisible = False
         self._highScoreMenu.load()
+
+    def addHighScore(self, songName, score, message):
+        highScoreDialog = HighScoreDialog(self, songName, score, message)
+        highScoreDialog.open()
 
     def doEvent(self, event):
         if self._isVisible:

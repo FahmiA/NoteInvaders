@@ -54,14 +54,14 @@ class GameRound:
 
         # Load HUD
         self._font = ContentManager.load_font(36)
-        self._scoreSprite = TextSprite(self._font, pygame.Color('black'), (30, 30))
-        self._livesSprite = TextSprite(self._font, pygame.Color('black'), (30, 70))
+        self._scoreSprite = TextSprite(self._font, pygame.Color('white'), (30, 30))
+        self._livesSprite = TextSprite(self._font, pygame.Color('white'), (30, 70))
         self._livesSprite.updateText('Lives: ' + str(self._lives))
         self._hudGroup.add(self._scoreSprite, self._livesSprite)
 
         # Load music configuration
-        #midiPath = 'media\\music\\battlefield1942'
-        #midiPath = 'media\\music\\morrowind_dance_mix'
+        #songPath = 'media\\music\\battlefield1942'
+        songPath = 'media\\music\\test'
 
         # Load game director
         self._gameDirector = GameDirector(self)
@@ -119,11 +119,15 @@ class GameRound:
 
         if self._lives < 0:
             self._gameDirector.stop()
-            self._noteWars.goToMainMenu()
+            self._noteWars.goToMainMenuWithLose(self._score)
         else:
             self._livesSprite.updateText('Lives: ' + str(self._lives))
             self._enemiesGroup.empty()
             self._player.setPosition(self._playerSpawnPos)
+
+    def roundComplete(self):
+        self._gameDirector.stop()
+        self._noteWars.goToMainMenuWithWin(self._score)
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies

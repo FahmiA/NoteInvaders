@@ -26,12 +26,15 @@ class MIDITrackSequencer:
 
     def getTickMS(self):
         return self._tickMs
+    
+    def isFinished(self):
+        return self._index + 1 >= len(self._track)
 
     def update(self, elapsedTimeMS):
         self._totalTimeMs += elapsedTimeMS
         firedEvents = []
 
-        if self._index >= len(self._track):
+        if self._index + 1 >= len(self._track):
             return firedEvents
 
         event = self._track[self._index]
@@ -45,7 +48,7 @@ class MIDITrackSequencer:
             elif event.name == 'Set Tempo':
                 self._handleTempoChange(event)
 
-            if self._index < len(self._track) - 1:
+            if self._index + 1 < len(self._track):
                 self._index += 1
                 event = self._track[self._index]
             else:
@@ -83,6 +86,7 @@ class MIDISequencer:
     def __init__(self, defaultTempo):
         self._defaultTempo = defaultTempo
         self._prevTimeMs = None # Time in Ms of last frame
+        self._isFinished = False # True if the MIDI track has finished
 
     def load(self, midiPath):
         self._midiPattern = midi.read_midifile(midiPath)
@@ -104,6 +108,9 @@ class MIDISequencer:
 
         return elapsedTimeMs
 
+    def isFinished(self):
+        return self._isFinished
+
     def update(self):
         elapsedTimeMs = self.getElapsedRealTime()
 
@@ -115,5 +122,11 @@ class MIDISequencer:
             for event in trackEvents:
                 note = Note(event.data[0], i, 0.2) # TODO: Look for note off event!!!
                 firedNotes.append(note)
+
+        self._isFinished = True
+        for i in range(0, len(self._trackSequencers)):
+            if not self._trackSequencers[i].isFinished():
+                self._isFinished = False
+                break
 
         return firedNotes

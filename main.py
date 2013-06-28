@@ -20,6 +20,7 @@ class NoteWars:
 
     def __init__(self):
         self._running = False
+        self._currentSongName = ''
         self._mainMenu = MainMenu(self)
         self._gameRound = None
 
@@ -74,12 +75,22 @@ class NoteWars:
     def quit(self):
         self._running = False
 
-    def goToMainMenu(self):
+    def goToMainMenuWithLose(self, score):
         self._gameRound.stop()
         self._gameRound = None
         self._mainMenu.show()
 
+        self._mainMenu.addHighScore(self._currentSongName, score, 'You were killed :(')
+
+    def goToMainMenuWithWin(self, score):
+        self._gameRound.stop()
+        self._gameRound = None
+        self._mainMenu.show()
+
+        self._mainMenu.addHighScore(self._currentSongName, score, 'You survived :)')
+
     def goPlayGameRound(self, songPath):
+        self._currentSongName = songPath.split('\\')[-1]
         self._gameRound = GameRound(self, self._screen.get_width(), self._screen.get_height())
         self._gameRound.load(songPath)
         self._mainMenu.hide()
