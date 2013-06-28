@@ -19,13 +19,13 @@ class EnemyFactory:
         self._enemy3Image = ContentManager.load_image('media\\actors\\enemy3.png')
 
     def createEnemy1(self):
-        enemy = Enemy(self._enemy1Image, self._player)
+        enemy = Enemy(50, self._enemy1Image, self._player)
         return enemy
 
     def createEnemy2(self):
-        enemy = Enemy(self._enemy2Image, self._player)
+        enemy = Enemy(60, self._enemy2Image, self._player)
         return enemy
 
     def createEnemy3(self):
-        enemy = Enemy(self._enemy3Image, self._player)
+        enemy = Enemy(70, self._enemy3Image, self._player)
         return enemy

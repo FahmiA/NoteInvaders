@@ -7,8 +7,8 @@ from Actor import Actor
 
 class Enemy(Actor):
 
-    def __init__(self, image, target):
-        Actor.__init__(self, image, (100, 100), 50)
+    def __init__(self, maxVelocity, image, target):
+        Actor.__init__(self, image, (100, 100), maxVelocity)
         
         self._target = target
 
