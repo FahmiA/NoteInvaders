@@ -1,11 +1,5 @@
 # Represents the game world for one round of game play:
 #   From the birth to the death of the player.
-#
-# Concepts:
-# - Manager Player
-# - Manage and spawn enemies, including "orchestration"
-# - Handle score
-# - Handle background?
 
 import random
 
@@ -47,7 +41,7 @@ class GameRound:
 
         # Load player
         self._playerSpawnPos = (self._windowWidth / 2, self._windowHeight / 2)
-        self._player = Player(ContentManager.load_image('media\\actors\\player.png'), self._laser, self._playerSpawnPos)
+        self._player = Player(ContentManager.load_image('media/actors/player.png'), self._laser, self._playerSpawnPos)
         self._playerGroup.add(self._player)
 
         # Load HUD
@@ -58,8 +52,8 @@ class GameRound:
         self._hudGroup.add(self._scoreSprite, self._livesSprite)
 
         # Load music configuration
-        #songPath = 'media\\music\\battlefield1942'
-        #songPath = 'media\\music\\test'
+        #songPath = 'media/music/battlefield1942'
+        #songPath = 'media/music/test'
 
         # Load game director
         self._gameDirector = GameDirector(self)
