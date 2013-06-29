@@ -97,28 +97,38 @@ class GameRound:
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec
 
+        # CHeck whether to render laser or not
         if self._laser.isFiring():
             self._laser.add(self._projectilesGroup)
         else:
             self._laser.kill()
 
+        # Check for collisions
         self._checkCollisions()
 
+        # Update game entities
         self._playerGroup.update(elapsedTimeSec)
         self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
         self._hudGroup.update(elapsedTimeSec)
 
+        # Invoke game director
         self._gameDirector.update(elapsedTimeSec)
+
+        # Check whether the user wants to exit the game
+        pressedKeys = pygame.key.get_pressed()
+        if pressedKeys[K_BACKSPACE]:
+            self._exitRound()
 
     def stop(self):
         self._musicPlayer.stop()
+        self._gameDirector.stop()
 
     def _handlePlayerDeath(self):
         self._lives -= 1
 
         if self._lives < 0:
-            self._gameDirector.stop()
+            self.stop()
             self._noteWars.goToMainMenuWithLose(self._score)
         else:
             self._livesSprite.updateText('Lives: ' + str(self._lives))
@@ -126,8 +136,12 @@ class GameRound:
             self._player.setPosition(self._playerSpawnPos)
 
     def roundComplete(self):
-        self._gameDirector.stop()
+        self.stop()
         self._noteWars.goToMainMenuWithWin(self._score)
+
+    def _exitRound(self):
+        self.stop()
+        self._noteWars.goToMainMenu()
 
     def _checkCollisions(self):
         # Check collisions between projectiles and enemies

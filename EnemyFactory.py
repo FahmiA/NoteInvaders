@@ -14,9 +14,9 @@ class EnemyFactory:
     def load(self, player):
         self._player = player
 
-        self._enemy1Image= ContentManager.load_image('media\\actors\\enemy1.png')
-        self._enemy2Image= ContentManager.load_image('media\\actors\\enemy2.png')
-        self._enemy3Image = ContentManager.load_image('media\\actors\\enemy3.png')
+        self._enemy1Image= ContentManager.load_image('media/actors/enemy1.png')
+        self._enemy2Image= ContentManager.load_image('media/actors/enemy2.png')
+        self._enemy3Image = ContentManager.load_image('media/actors/enemy3.png')
 
     def createEnemy1(self):
         enemy = Enemy(50, self._enemy1Image, self._player)

@@ -29,10 +29,8 @@ class NoteWars:
         self._screen = pygame.display.set_mode((1280, 720)) # 720p
         pygame.display.set_caption('Note Wars')
 
-        # Create the bckground
-        self._background = pygame.Surface(self._screen.get_size())
-        self._background = self._background.convert()
-        self._background.fill((0, 0, 0))
+        # Create the background (purple colour key because nothing should be transparent)
+        self._background = ContentManager.load_image('media/backgrounds/background.jpg', pygame.Color('purple'))
 
         # Load the main menu
         self._mainMenu.load()
@@ -75,18 +73,16 @@ class NoteWars:
     def quit(self):
         self._running = False
 
-    def goToMainMenuWithLose(self, score):
-        self._gameRound.stop()
+    def goToMainMenu(self):
         self._gameRound = None
         self._mainMenu.show()
 
+    def goToMainMenuWithLose(self, score):
+        self.goToMainMenu()
         self._mainMenu.addHighScore(self._currentSongName, score, 'You were killed :(')
 
     def goToMainMenuWithWin(self, score):
-        self._gameRound.stop()
-        self._gameRound = None
-        self._mainMenu.show()
-
+        self.goToMainMenu()
         self._mainMenu.addHighScore(self._currentSongName, score, 'You survived :)')
 
     def goPlayGameRound(self, songPath):
