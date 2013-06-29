@@ -6,7 +6,7 @@
 29th: Flesh out all graphics and any additional tasks
        * Done. Instructions
        * Done. Background
-       * [If time] Efficient laser drawing
+       * Done. [If time] Efficient laser drawing
 30th: Deployment and any additional tasks
 
 Stop player firing on note off MIDI event.
