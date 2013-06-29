@@ -36,7 +36,6 @@ class GameRound:
         self._enemyElapsedDelaySec = 0.0
 
         self._playerGroup = pygame.sprite.GroupSingle()
-        self._projectilesGroup = pygame.sprite.Group()
         self._hudGroup = pygame.sprite.Group()
 
         self._score = 0
@@ -44,8 +43,7 @@ class GameRound:
 
     def load(self, songPath):
         # Load projectiles
-        self._laser = Laser(ContentManager.load_image('media\\projectiles\\laser.png'))
-        self._projectilesGroup.add(self._laser)
+        self._laser = Laser(self._windowWidth * 1.5)
 
         # Load player
         self._playerSpawnPos = (self._windowWidth / 2, self._windowHeight / 2)
@@ -97,18 +95,11 @@ class GameRound:
     def update(self, elapsedTimeSec):
         self._enemyElapsedDelaySec += elapsedTimeSec
 
-        # CHeck whether to render laser or not
-        if self._laser.isFiring():
-            self._laser.add(self._projectilesGroup)
-        else:
-            self._laser.kill()
-
         # Check for collisions
         self._checkCollisions()
 
         # Update game entities
         self._playerGroup.update(elapsedTimeSec)
-        self._projectilesGroup.update(elapsedTimeSec)
         self._enemiesGroup.update(elapsedTimeSec)
         self._hudGroup.update(elapsedTimeSec)
 
@@ -144,12 +135,20 @@ class GameRound:
         self._noteWars.goToMainMenu()
 
     def _checkCollisions(self):
-        # Check collisions between projectiles and enemies
+        # Check collisions between laser and enemies
+        collidedEnemies = []
         if self._laser.isFiring():
-            collidedEnemies = pygame.sprite.spritecollide(self._laser, self._enemiesGroup, True, CollisionMethods.collideLineToRect)
+            for enemy in self._enemiesGroup.sprites():
+                if CollisionMethods.collideLineToRect(self._laser.getFiredFromPos(),
+                                                      self._laser.getFiredToPos(),
+                                                      enemy.rect):
+                    collidedEnemies.append(enemy)
 
             self._score += len(collidedEnemies) * 100
             self._scoreSprite.updateText('Score: ' + str(self._score))
+
+            for enemy in collidedEnemies:
+                enemy.kill()
 
         # Check collisions between player and enemies
         collidedEnemies = pygame.sprite.spritecollide(self._player, self._enemiesGroup, True, CollisionMethods.collideRectThenMask)
@@ -157,7 +156,7 @@ class GameRound:
             self._handlePlayerDeath()
 
     def draw(self, screen):
-        self._projectilesGroup.draw(screen)
+        self._laser.draw(screen)
         self._playerGroup.draw(screen)
         self._enemiesGroup.draw(screen)
 

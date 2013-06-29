@@ -6,17 +6,12 @@ from Vec2d import Vec2d
 from Laser import Laser
 from Player import Player
 
-def collideLineToRect(lineSprite, rectSprite):
-    # Get start and end points of line
-    laserStartPoint = lineSprite.rect.center + Vec2d(lineSprite._originalImage.get_rect().width / 2, 0).rotated(lineSprite._rotation)
-    laserEndPoint = lineSprite.rect.center - Vec2d(lineSprite._originalImage.get_rect().width / 2, 0).rotated(lineSprite._rotation)
-
+def collideLineToRect(lineStartPoint, lineEndPoint, targetRect):
     # Check line intersection against line and all edges of rect
-    rect = rectSprite.rect
-    return linesCollide(laserStartPoint, laserEndPoint, rect.bottomleft, rect.topleft) or \
-           linesCollide(laserStartPoint, laserEndPoint, rect.topleft, rect.topright) or \
-           linesCollide(laserStartPoint, laserEndPoint, rect.topright, rect.bottomright) or \
-           linesCollide(laserStartPoint, laserEndPoint, rect.bottomright, rect.bottomleft)
+    return linesCollide(lineStartPoint, lineEndPoint, targetRect.bottomleft, targetRect.topleft) or \
+           linesCollide(lineStartPoint, lineEndPoint, targetRect.topleft, targetRect.topright) or \
+           linesCollide(lineStartPoint, lineEndPoint, targetRect.topright, targetRect.bottomright) or \
+           linesCollide(lineStartPoint, lineEndPoint, targetRect.bottomright, targetRect.bottomleft)
            
 def ccw(A, B, C):
     # Source: http://www.bryceboe.com/2006/10/23/line-segment-intersection-algorithm/

@@ -42,13 +42,8 @@ class Player(Actor):
         self._updatePosition()
 
         # Handle firing laser
-        #if pressedKeys[K_SPACE]:
-            #self._laser.fire(self.rect.center, self._rotation - 90)
-        #else:
-            #self._laser.stop()
-
         if self._fireDurationSec > 0:
-            self._laser.fire(self.rect.center, self._rotation - 90)
+            self._laser.fire(self.rect.center, self._rotation)
             self._fireDurationSec -= elapsedTimeSec
         else:
             self._laser.stop()

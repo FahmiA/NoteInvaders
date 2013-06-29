@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.64884028"
-     inkscape:cx="108.25666"
-     inkscape:cy="623.39812"
+     inkscape:zoom="2.5953611"
+     inkscape:cx="528.83921"
+     inkscape:cy="628.5778"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -189,22 +189,6 @@
          id="tspan3812"
          x="33.136044"
          y="1009.2083">Cool fonts: http://luc.devroye.org/fonts-50559.html</tspan></text>
-    <path
-       sodipodi:type="star"
-       style="fill:#670da0;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-opacity:1"
-       id="path3801"
-       sodipodi:sides="4"
-       sodipodi:cx="320.18668"
-       sodipodi:cy="610.80511"
-       sodipodi:r1="5.7279387"
-       sodipodi:r2="5.4045072"
-       sodipodi:arg1="2.7985687"
-       sodipodi:arg2="3.5839669"
-       inkscape:flatsided="false"
-       inkscape:rounded="0"
-       inkscape:randomized="0"
-       d="m 314.79244,612.73163 0.50998,-4.24011 2.95774,-3.08065 4.24011,0.50999 3.08065,2.95774 -0.50999,4.24011 -2.95774,3.08064 -4.24011,-0.50998 z"
-       transform="translate(292.0356,-233.45366)" />
     <path
        sodipodi:nodetypes="ccccccc"
        inkscape:connector-curvature="0"
