@@ -28,11 +28,16 @@ class HighScoreMenu:
         # Create a table to organise our menu
         highScoreTable = gui.Table()
 
+        spaceLabel = gui.Label(' | ')
+
         # Add the table header
         highScoreTable.tr()
         highScoreTable.td(gui.Label("Song"))
+        highScoreTable.td(spaceLabel)
         highScoreTable.td(gui.Label("Name"))
+        highScoreTable.td(spaceLabel)
         highScoreTable.td(gui.Label("Score"))
+        highScoreTable.td(spaceLabel)
         highScoreTable.td(gui.Label("Date"))
         
         # Load high scores into table
@@ -40,15 +45,18 @@ class HighScoreMenu:
         for highScore in highScores:
             highScoreTable.tr()
             highScoreTable.td(gui.Label(highScore[0]))
+            highScoreTable.td(spaceLabel)
             highScoreTable.td(gui.Label(highScore[1]))
+            highScoreTable.td(spaceLabel)
             highScoreTable.td(gui.Label(str(highScore[2])))
+            highScoreTable.td(spaceLabel)
             highScoreTable.td(gui.Label(highScore[3]))
 
         # Add a back button
         backButton = gui.Button("Return to main menu")
         backButton.connect(gui.CLICK, self._displayMainMenu)
         highScoreTable.tr() # New table row
-        highScoreTable.td(backButton, colspan = 4)
+        highScoreTable.td(backButton, colspan = 8)
 
         # Add the menu to the top level widget
         self._app.init(highScoreTable)
