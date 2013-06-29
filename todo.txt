@@ -5,7 +5,7 @@
 28th: Done. Flesh out all graphics
 29th: Flesh out all graphics and any additional tasks
        * Done. Instructions
-       * Background
+       * Done. Background
        * [If time] Efficient laser drawing
 30th: Deployment and any additional tasks
 
