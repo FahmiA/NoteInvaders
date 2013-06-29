@@ -38,16 +38,13 @@ class MainMenu():
         menuTable.td(bannerImage)
 
         # Add author information
+        sentenceWordLength = 10
         aboutText = 'A game by Fahmi for WoGaDeMo 2013'
-        aboutLabel = gui.Label(aboutText)
-        menuTable.tr() # New table row
-        menuTable.td(aboutLabel)
+        self._displayText(menuTable, aboutText, 10)
 
         # Add instruction information
-        instText = 'Use WAD to move your ship. Your ship fires with the music. Your enemies spawn with the music'
-        instLabel = gui.Label(instText)
-        menuTable.tr() # New table row
-        menuTable.td(instLabel)
+        instText = 'Use WASD to move your ship and your mouse to aim. Your ship fires with the music. Your enemies spawn with the music'
+        self._displayText(menuTable, instText, 10)
 
         # Add button to play a song
         song1Button = gui.Button("Play Song: Battlefield1942")
@@ -78,6 +75,21 @@ class MainMenu():
 
         # Signify that the main menu is visible
         self._isVisible = True
+
+    def _displayText(self, menuTable, text, sentenceWordLimit):
+        words = text.split(' ')
+        sentence = ''
+        for i in range(0, len(words)):
+            if i % sentenceWordLimit == 0:
+                menuTable.tr()
+                if i > 0:
+                    menuTable.td(gui.Label(sentence))
+                    sentence = ''
+
+            sentence += words[i] + ' '
+
+        menuTable.tr()
+        menuTable.td(gui.Label(sentence))
 
     def displayHighScores(self):
         self._isVisible = False

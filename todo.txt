@@ -2,9 +2,12 @@
 25th: Done. Find and integrate at least one good music track (mostly done)
 26th: Done. Create UI for game start and game end
 27th: Done. Implement High-Score leaderboards
-28: Flesh out all graphics
-29: Flesh out all graphics and any additional tasks
-30: Deployment and any additional tasks
+28th: Done. Flesh out all graphics
+29th: Flesh out all graphics and any additional tasks
+       * Done. Instructions
+       * Background
+       * [If time] Efficient laser drawing
+30th: Deployment and any additional tasks
 
 Stop player firing on note off MIDI event.
 Done. Improve performance of laser collision. Use line, not pixel mask, collision.
