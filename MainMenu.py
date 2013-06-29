@@ -53,10 +53,16 @@ class MainMenu():
         menuTable.td(song1Button)
 
         # Add button to play a song
-        song2Button = gui.Button("Play Song: Morrowing Dance Mix")
+        song2Button = gui.Button("Play Song: Morrowind Dance Mix")
         song2Button.connect(gui.CLICK, self._noteWars.goPlayGameRound, 'media/music/morrowind_dance_mix')
         menuTable.tr() # New table row
         menuTable.td(song2Button)
+
+        # Add button to play a song
+        song3Button = gui.Button("Play Song: Deus Ex Theme")
+        song3Button.connect(gui.CLICK, self._noteWars.goPlayGameRound, 'media/music/Deus_Ex_Theme')
+        menuTable.tr() # New table row
+        menuTable.td(song3Button)
 
         # Add button to view high scores
         highScoresButton = gui.Button("High Scores")

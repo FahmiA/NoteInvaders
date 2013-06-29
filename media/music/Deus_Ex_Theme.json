@@ -1,0 +1,14 @@
+{
+    "defaultTempo": 90,
+    "playerFireEvents": {
+        "0": [58, 54]
+    },
+    "enemy1SpawnEvents": {
+        "0": [77]
+    },
+     "enemy2SpawnEvents": {
+        "0": [75]
+    },
+    "enemy3SpawnEvents": {
+    }
+}
