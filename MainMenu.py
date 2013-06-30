@@ -42,9 +42,15 @@ class MainMenu():
         aboutText = 'A game by Fahmi for WoGaDeMo 2013'
         self._displayText(menuTable, aboutText, 10)
 
+        # Add a gap
+        self._displayText(menuTable, '', 10)
+
         # Add instruction information
-        instText = 'Use WASD to move your ship and your mouse to aim. Your ship fires with the music. Your enemies spawn with the music'
+        instText = 'Use WASD to move your ship and your mouse to aim. Press backspace to go back to this menu. Your ship fires with the music. Your enemies spawn with the music.'
         self._displayText(menuTable, instText, 10)
+
+        # Add a gap
+        self._displayText(menuTable, '', 10)
 
         # Add button to play a song
         song1Button = gui.Button("Play Song: Battlefield1942")

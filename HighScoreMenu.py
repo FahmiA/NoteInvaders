@@ -52,6 +52,10 @@ class HighScoreMenu:
             highScoreTable.td(spaceLabel)
             highScoreTable.td(gui.Label(highScore[3]))
 
+        # Add a gap
+        highScoreTable.tr()
+        highScoreTable.td(gui.Label(), colspan=8)
+
         # Add a back button
         backButton = gui.Button("Return to main menu")
         backButton.connect(gui.CLICK, self._displayMainMenu)
