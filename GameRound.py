@@ -45,7 +45,8 @@ class GameRound:
         self._playerGroup.add(self._player)
 
         # Load HUD
-        self._font = ContentManager.load_font(36)
+        fontPath = 'media/fonts/freesansbold.ttf'
+        self._font = ContentManager.load_font(fontPath, 36)
         self._scoreSprite = TextSprite(self._font, pygame.Color('white'), (30, 30))
         self._livesSprite = TextSprite(self._font, pygame.Color('white'), (30, 70))
         self._livesSprite.updateText('Lives: ' + str(self._lives))
