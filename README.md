@@ -1,7 +1,7 @@
 NoteInvaders
 ============
 
-NoteInvaders, a game for WoGaDeMo June 2013 by Fahmi A.
+NoteInvaders, a game for [WoGaDeMo](http://2013.wogademo.com/) June 2013 by Fahmi A.
 
 About
 -----
