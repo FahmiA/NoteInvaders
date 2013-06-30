@@ -1,12 +1,12 @@
-NoteInvaders
+NoteWars
 ============
 
-NoteInvaders, a game for [WoGaDeMo](http://2013.wogademo.com/) June 2013 by Fahmi A.
+NoteWars, a game for [WoGaDeMo](http://2013.wogademo.com/) June 2013 by Fahmi A.
 
 About
 -----
 
-NoteInvaders is intended to be a Geometry Wars-esk game, but where everything occurs to the beat of the music. The player controls a ship in a top-down 2D arena. Enemies Spawn and attempt to attack the player, while the player must protect his/her ship by firing lasers to destroy the enemy ships. Points are awarded for destroying enemy ships and the player has three lives.
+NoteWars is intended to be a Geometry Wars-esk game, but where everything occurs to the beat of the music. The player controls a ship in a top-down 2D arena. Enemies Spawn and attempt to attack the player, while the player must protect his/her ship by firing lasers to destroy the enemy ships. Points are awarded for destroying enemy ships and the player has three lives.
 
 The twist is that the player has no control of the ship's laser. Instead the ship fires a laser on certain notes and instruments in the music. Likewise, different enemies spawn on different musical notes and instruments. I thought this would create an interesting interplay between game and music. This game is really a simple proof-of-concept of this idea.
 
