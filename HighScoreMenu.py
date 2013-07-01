@@ -22,7 +22,7 @@ class HighScoreMenu:
 
     def load(self):
         # Create the top level widget 
-        self._app = gui.Desktop(theme = gui.Theme("media/menu/DefaultTheme"))
+        self._app = gui.Desktop(theme = gui.Theme("media/menu/defaultTheme"))
         self._app.connect(gui.QUIT, self._noteWars.quit)
 
         # Create a table to organise our menu
